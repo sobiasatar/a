@@ -1,0 +1,50 @@
+@startuml
+title Domain Model Class Diagram for QSM System
+
+class Vehicle {
+  - registrationNumber: String
+  - make: String
+  - model: String
+  - transmissionType: String
+}
+
+class Instructor {
+  - name: String
+  - address: String
+  - dateOfBirth: Date
+  - contactPhone: String
+  - email: String
+  - licenseNumber: String
+  - licenseClass: String
+  - licenseExpiry: Date
+}
+
+class Lesson {
+  - customerName: String
+  - startTime: Time
+  - date: Date
+  - startMileage: Integer
+  - endMileage: Integer
+  - logNotes: String
+}
+
+class Customer {
+  - name: String
+  - address: String
+  - dateOfBirth: Date
+  - provisionalLicenseNumber: String
+  - contactPhone: String
+  - email: String
+}
+
+class LessonPackage {
+  - numberOfLessons: Integer
+  - price: Double
+}
+
+Vehicle "0..*" -- "1" Lesson : used in >
+Instructor "0..*" -- "1" Lesson : teaches >
+Customer "1" -- "0..*" Lesson : takes >
+Customer "1" -- "0..1" LessonPackage : buys >
+@enduml
+
